@@ -2,18 +2,19 @@ import { useState } from 'react';
 import SplitPane,{Pane} from 'split-pane-react';
 import './App.css'
 import 'split-pane-react/esm/themes/default.css';
+import NodeEditor from './component/section/NodeEditor';
 
 
 function App ()  {
   const [sizes, setSizes] = useState<(number | string)[]>([
-      100,
+      "20%",
       'auto',
   ]);
 
   const layoutCSS = {
     height: '100%',
     display: 'flex',
-    alignItems: 'center',
+    alignItems: 'flex-end',
     justifyContent: 'center',
 };
 
@@ -25,17 +26,15 @@ function App ()  {
               sashRender={()=> null}
               split='horizontal'
           >
-            <Pane minSize={200} >
+            <Pane minSize={"20%"} >
               <div style={{ ...layoutCSS, background: '#d5d7d9' }}>
                   ViewPort
               </div>
-              </Pane>
+            </Pane>
 
-              <Pane>
-              <div style={{ ...layoutCSS, background: '#a1a5a9' }}>
-                  Node Editor
+              <div style={{ ...layoutCSS }}>
+                  <NodeEditor/>
               </div>
-              </Pane>
           </SplitPane>
       </div>
   );
