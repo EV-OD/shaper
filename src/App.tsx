@@ -3,6 +3,7 @@ import SplitPane,{Pane} from 'split-pane-react';
 import './App.css'
 import 'split-pane-react/esm/themes/default.css';
 import NodeEditor from './component/section/NodeEditor';
+import ViewPort from './component/section/ViewPort';
 
 
 function App ()  {
@@ -27,8 +28,8 @@ function App ()  {
               split='horizontal'
           >
             <Pane minSize={"20%"} >
-              <div style={{ ...layoutCSS, background: '#d5d7d9' }}>
-                  ViewPort
+              <div style={{ ...layoutCSS, background: '#d5d7d9' }}>\
+                <ViewPort/>
               </div>
             </Pane>
 

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Handle, Node, Position, useNodeConnections, useNodesData } from '@xyflow/react';
 import Vector from '../../../utils/vector';
+import { useStore } from '../../../globalStores/viewer';
 
 const render3DVector = (x: number, y: number, z: number) => {
     return (
@@ -30,6 +31,7 @@ const render3DVector = (x: number, y: number, z: number) => {
 };
 
 
+
 type CustomDataType = Node<{
     obj: {
         type: string;
@@ -45,6 +47,7 @@ function VectorViewNode() {
         y: number;
         z: number;
     }>({ x: 0, y: 0, z: 0 });
+    const setVectorState =  useStore(state=> state.setVector)
 
 
 
@@ -55,6 +58,8 @@ function VectorViewNode() {
             const y = v.y.f();
             const z = v.z.f();
             console.log(x, y, z);
+            setVectorState(x, y, z);
+
             setVector({ x,y,z });
         }
     }, [nodeData]);
