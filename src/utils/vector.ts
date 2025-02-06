@@ -38,8 +38,10 @@ export class Vector {
         return this.data.length;
     }
 
-    public toArray(): number[] {
-        return this.data.map(obj => obj.f());
+    public toArray() {
+        return this.data.map(obj => {
+            return {obj}
+        });
     }
 
     public get x() {
