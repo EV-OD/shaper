@@ -8,13 +8,18 @@ import {
     addEdge,
     BackgroundVariant,
     ReactFlowProvider,
+    useReactFlow,
   } from '@xyflow/react';
    
   import '@xyflow/react/dist/style.css';
-import { useCallback, useMemo } from 'react';
+import { useCallback, useMemo, useRef } from 'react';
 import RandomeNode from '../widgets/nodes/randomNode';
 import CombineVectorNode from '../widgets/nodes/combineVector';
 import VectorViewNode from '../widgets/nodes/vectorView';
+import VectorAdd from '../widgets/nodes/vectorAdd';
+import { useDnD } from '../../DndContext';
+import SideBar from '../Sidebar';
+import { CustomNodeType } from '../../utils/CustomNode';
 
 const initialNodes = [
     {
@@ -27,32 +32,83 @@ const initialNodes = [
         type: 'combineVector',
         position: { x: 200, y: 50 },
       },
+      
       {
         id: '3',
         type: "vectorView",
+        position: { x: 700, y: 50 },
+      },
+      
+      {
+        id: '4',
+        type:"vectorAdd",
         position: { x: 500, y: 50 },
-      }
+
+      },
+      {
+        id: '5',
+        type: 'combineVector',
+        position: { x: 200, y: 200 },
+      },
   ];
-  const initialEdges = [
-];
+  const initialEdges = [];
+
+  let id = 0;
+const getId = () => `dndnode_${id++}`;
+
 
 const NodeEditor = () =>{
+  const reactFlowWrapper = useRef(null);
+
     const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
-  const nodeTypes = useMemo(() => ({ randomNode: RandomeNode, 
-    combineVector: CombineVectorNode,
-    vectorView: VectorViewNode
-  }), []);
+  const nodeTypes = useMemo(() => CustomNodeType, []);
+
+  const { screenToFlowPosition } = useReactFlow();
+  const [type] = useDnD();
 
  
   const onConnect = useCallback(
     (params) => setEdges((eds) => addEdge(params, eds)),
     [setEdges],
   );
+
+  const onDragOver = useCallback((event) => {
+    event.preventDefault();
+    event.dataTransfer.dropEffect = 'move';
+  }, []);
+ 
+  const onDrop = useCallback(
+    (event) => {
+      event.preventDefault();
+ 
+      // check if the dropped element is valid
+      if (!type) {
+        return;
+      }
+ 
+      // project was renamed to screenToFlowPosition
+      // and you don't need to subtract the reactFlowBounds.left/top anymore
+      // details: https://reactflow.dev/whats-new/2023-11-10
+      const position = screenToFlowPosition({
+        x: event.clientX,
+        y: event.clientY,
+      });
+      const newNode = {
+        id: getId(),
+        type,
+        position,
+      };
+ 
+      setNodes((nds) => nds.concat(newNode));
+    },
+    [screenToFlowPosition, type],
+  );
  
   return (
-    <div style={{ width: '100vw', height: 'calc(100vh - 20%)' }}>
-      <ReactFlowProvider>
+    <div style={{ width: '100vw', height: 'calc(100vh - 25%)' }}>
+      <div className="dndflow">
+        <div className="reactflow-wrapper" ref={reactFlowWrapper}>
         <ReactFlow
           nodes={nodes}
           edges={edges}
@@ -60,13 +116,18 @@ const NodeEditor = () =>{
           onEdgesChange={onEdgesChange}
           onConnect={onConnect}
           nodeTypes={nodeTypes} 
+          onDrop={onDrop}
+          onDragOver={onDragOver}
           fitView
+          style={{ backgroundColor: "#F7F9FB" }}
         >
           <Controls />
           <MiniMap />
           <Background variant={BackgroundVariant.Dots} gap={12} size={1} />
         </ReactFlow>
-      </ReactFlowProvider>
+        </div>
+        <SideBar/>
+        </div>
     </div>
   );
 }

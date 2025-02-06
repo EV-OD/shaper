@@ -48,11 +48,13 @@ function VectorViewNode() {
         z: number;
     }>({ x: 0, y: 0, z: 0 });
     const setVectorState =  useStore(state=> state.setVector)
+    console.log("Vector:", nodeData)
 
 
 
     useEffect(() => {
-        const v  = nodeData?.data.obj.f()
+        const v  = nodeData?.data?.obj.f()
+        console.log(v)
         if(v){
             const x = v.x.f();
             const y = v.y.f();

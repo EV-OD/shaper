@@ -1,6 +1,6 @@
 export type vectorItem = {
     obj: {
-        type: string;
+        type: "real" | "instance";
         f: () => number;
     };
 };
@@ -62,14 +62,46 @@ export class Vector {
 
     public add(other: Vector): Vector {
         this._ensureSameDimension(other);
-        const result = this.data.map((obj, idx) => ({
-            type: "instance",
-            f: () => obj.f() + other.data[idx].f(),
-            x: obj,
-            y: other.data[idx],
-            z: idx === 2 ? { type: "instance", f: () => obj.f() + other.data[idx].f() } : undefined
-        }));
-        return new Vector(result.map(r => r.f()));
+        // const result = this.data.map((obj, idx) => ({
+        //     type: "instance",
+        //     f: () => obj.f() + other.data[idx].f(),
+        //     x: obj,
+        //     y: other.data[idx],
+        //     z: idx === 2 ? { type: "instance", f: () => obj.f() + other.data[idx].f() } : undefined
+        // }));
+        // return new Vector(result.map(r => r.f()));
+
+        const selfItem = this
+        console.log(selfItem.x.f() + other.x.f())
+        const x:vectorItem = {
+            obj:{
+                type: "instance",
+                f(){
+                    return selfItem.x.f() + other.x.f()
+                }
+            }
+        }
+        const y:vectorItem = {
+            obj:{
+                type: "instance",
+                f(){
+                    return selfItem.y.f() + other.y.f()
+                }
+            }
+        }
+
+        const z:vectorItem = {
+            obj:{
+                type: "instance",
+                f(){
+                    return selfItem.z.f() + other.z.f()
+                }
+            }
+        }
+
+        return new Vector([x,y,z])
+
+
     }
 
     public subtract(other: Vector): Vector {

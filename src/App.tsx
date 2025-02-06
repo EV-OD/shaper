@@ -4,6 +4,8 @@ import './App.css'
 import 'split-pane-react/esm/themes/default.css';
 import NodeEditor from './component/section/NodeEditor';
 import ViewPort from './component/section/ViewPort';
+import { ReactFlowProvider } from '@xyflow/react';
+import { DnDProvider } from './DndContext';
 
 
 function App ()  {
@@ -34,7 +36,11 @@ function App ()  {
             </Pane>
 
               <div style={{ ...layoutCSS }}>
+                <ReactFlowProvider>
+                <DnDProvider>
                   <NodeEditor/>
+                </DnDProvider>
+                </ReactFlowProvider>
               </div>
           </SplitPane>
       </div>
