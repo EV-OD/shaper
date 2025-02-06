@@ -21,39 +21,10 @@ import { useDnD } from '../../DndContext';
 import SideBar from '../Sidebar';
 import { CustomNodeType } from '../../utils/CustomNode';
 
-const initialNodes = [
-    {
-        id: '1',
-        type: 'randomNode',
-        position: { x: 0, y: 50 },
-      },
-      {
-        id: '2',
-        type: 'combineVector',
-        position: { x: 200, y: 50 },
-      },
-      
-      {
-        id: '3',
-        type: "vectorView",
-        position: { x: 700, y: 50 },
-      },
-      
-      {
-        id: '4',
-        type:"vectorAdd",
-        position: { x: 500, y: 50 },
+const initialNodes = [];
+const initialEdges = [];
 
-      },
-      {
-        id: '5',
-        type: 'combineVector',
-        position: { x: 200, y: 200 },
-      },
-  ];
-  const initialEdges = [];
-
-  let id = 0;
+let id = 0;
 const getId = () => `dndnode_${id++}`;
 
 
