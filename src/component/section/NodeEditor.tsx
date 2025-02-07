@@ -77,7 +77,7 @@ const NodeEditor = () =>{
   );
  
   return (
-    <div style={{ width: '100vw', height: 'calc(100vh - 25%)' }}>
+    <div style={{ width: '100vw', height: '100%' }}>
       <div className="dndflow">
         <div className="reactflow-wrapper" ref={reactFlowWrapper}>
         <ReactFlow

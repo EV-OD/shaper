@@ -11,14 +11,13 @@ const SideBar= () => {
   };
  
   return (
-    <aside>
+    <aside className="overflow-y-auto">
       <div className="description">You can drag these nodes to the pane on the right.</div>
       {CustomNodeType && Object.keys(CustomNodeType).map((key) => (
         <div key={key} className="dndnode" onDragStart={(event) => onDragStart(event, key)} draggable>
             {key}
         </div>
         ))}
-
     </aside>
   );
 };

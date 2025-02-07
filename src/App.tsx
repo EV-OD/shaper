@@ -7,10 +7,12 @@ import ViewPort from './component/section/ViewPort';
 import { ReactFlowProvider } from '@xyflow/react';
 import { DnDProvider } from './DndContext';
 
+import { Canvas } from '@react-three/fiber'
+
 
 function App ()  {
   const [sizes, setSizes] = useState<(number | string)[]>([
-      "20%",
+      "50%",
       'auto',
   ]);
 
@@ -29,9 +31,13 @@ function App ()  {
               sashRender={()=> null}
               split='horizontal'
           >
-            <Pane minSize={"20%"} >
-              <div style={{ ...layoutCSS, background: '#d5d7d9' }}>\
-                <ViewPort/>
+            <Pane minSize={"50%"} >
+              <div style={{ ...layoutCSS, background: '#d5d7d9' }}>
+                <div className='absolute inset-0 h-screen'>
+                <Canvas>
+                  <ViewPort/>
+                </Canvas>
+                </div>
               </div>
             </Pane>
 
