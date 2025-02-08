@@ -9,6 +9,10 @@ body{
     font-size: 12px;
 }
 
+canvas{
+  background-color: #000000;
+}
+
 .dndflow {
     flex-direction: column;
     display: flex;

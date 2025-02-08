@@ -28,8 +28,8 @@ function ViewPort() {
         </mesh>
 }
 
-      {/* <Grid
-        args={[100, 100]}
+      <Grid
+        args={[1000, 1000]}
         cellSize={1}
         cellColor={"#cccccc"}
         cellThickness={1.0}
@@ -37,18 +37,19 @@ function ViewPort() {
         sectionColor={"#ff3e00"}
         sectionThickness={2}
         fadeDistance={100}
-        fadeStrength={5.9}      /> */}
+        fadeStrength={5.9} 
+        /> 
       <directionalLight  position={[0, 0, 5]} />
-      <ambientLight intensity={0.5} />
+      {/* <ambientLight intensity={0.5} /> */}
       <PerspectiveCamera makeDefault  position={[4,4,4]}>
-      <spotLight position={[0, 10, 0]} angle={0.3} penumbra={1} decay={0.5} intensity={Math.PI} receiveShadow castShadow />
-      <pointLight position={[4, 4, 0]} intensity={70} />
+      <spotLight position={[0, 5, 0]} angle={0.6} penumbra={1} decay={0.9} intensity={Math.PI} receiveShadow castShadow />
+      <pointLight position={[4, 4, 4]} intensity={70} />
 
       <OrbitControls>
         <GizmoHelper/>
       </OrbitControls>
       </PerspectiveCamera>
-      <mesh rotation={[Math.PI / -2 , 0,0]} position={[0,-0.001,0]} receiveShadow castShadow>
+      <mesh rotation={[Math.PI / -2 , 0,0]} position={[0,-0.01,0]} receiveShadow castShadow>
         <planeGeometry args={[100,100]} />
         <meshStandardMaterial
         color={"orange"}
