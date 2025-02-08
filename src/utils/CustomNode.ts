@@ -13,20 +13,67 @@ import InstancePositionNode from "../component/widgets/nodes/InstancePositionNod
 import RotateGeoNode from "../component/widgets/nodes/RotateGeoNode";
 import TranslateGeoNode from "../component/widgets/nodes/TranslateGeoNode";
 
-export const CustomNodeType = { 
-  randomNode: RandomNode, 
-  combineVector: CombineVectorNode,
-  vectorView: VectorViewNode,
-  vectorAdd: VectorAdd,
-  valueNode: ValueNode,
-  randomVector: RandomVector,
-  vectorNode: VectorNode,
-  planeGeometry: PlaneGeoNode,
-  cubeGeoNode: CubeGeoNode,
-  geoViewNode: GeoViewNode,
-  scaleGeoNode: ScaleGeoNode,
-  instancePositionNode: InstancePositionNode,
-  rotateGeoNode: RotateGeoNode,
-  translateGeoNode: TranslateGeoNode
 
-};
+
+export const VectorNodeTypes = {
+  arithemetic: {
+    vectorAdd: VectorAdd,
+  },
+  output: {
+    vectorView: VectorViewNode,
+  },
+  input: {
+    randomVector: RandomVector,
+    vectorNode: VectorNode,
+  }, 
+  misc: {
+    combineVector: CombineVectorNode,
+  }
+}
+
+export const GeoNodeTypes = {
+  mesh:{
+    planeGeometry: PlaneGeoNode,
+    cubeGeoNode: CubeGeoNode,
+  },
+  output: {
+    geoViewNode: GeoViewNode,
+  },
+  transform: {
+    scaleGeoNode: ScaleGeoNode,
+    rotateGeoNode: RotateGeoNode,
+    translateGeoNode: TranslateGeoNode,
+  },
+  instance: {
+    instancePositionNode: InstancePositionNode,
+  }
+}
+
+export const valueNodeTypes = {
+  randomNode: RandomNode,
+  valueNode: ValueNode,
+}
+
+
+
+// function to deep flaten an object
+function flattenObject(obj: Record<string, any>, parentKey: string = '', result: Record<string, any> = {}): Record<string, any> {
+  for (let key in obj) {
+      if (typeof obj[key] === 'object' && obj[key] !== null) {
+          flattenObject(obj[key], parentKey, result);
+      } else {
+          result[key] = obj[key];
+      }
+  }
+  return result;
+}
+
+const CustomNodeType = {
+  ...valueNodeTypes,
+  ...flattenObject(VectorNodeTypes),
+  ...flattenObject(GeoNodeTypes),
+}
+
+export {CustomNodeType}
+
+

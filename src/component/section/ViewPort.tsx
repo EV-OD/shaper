@@ -38,7 +38,7 @@ function ViewPort() {
         sectionThickness={2}
         fadeDistance={100}
         fadeStrength={5.9}      /> */}
-      <directionalLight color="red" position={[0, 0, 5]} />
+      <directionalLight  position={[0, 0, 5]} />
       <ambientLight intensity={0.5} />
       <PerspectiveCamera makeDefault  position={[4,4,4]}>
       <spotLight position={[0, 10, 0]} angle={0.3} penumbra={1} decay={0.5} intensity={Math.PI} receiveShadow castShadow />
