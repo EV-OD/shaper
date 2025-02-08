@@ -26,7 +26,7 @@ function ViewPort() {
         <mesh geometry={geometry} position={[0,1,0]} receiveShadow castShadow>
             <meshStandardMaterial />
         </mesh>
-        }
+}
 
       {/* <Grid
         args={[100, 100]}

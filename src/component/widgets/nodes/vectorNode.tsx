@@ -29,7 +29,7 @@ function VectorNode(props: NodeProps<DataType>) {
           placeholder="X"
           className="input input-bordered w-32 h-6"
           onInput={(e) => {
-            const x = parseInt(e.currentTarget.value);
+            const x = Number(e.currentTarget.value);
             setVector(
               new Vector([
                 { obj: { type: "instance", f: () => x } },
@@ -44,7 +44,7 @@ function VectorNode(props: NodeProps<DataType>) {
           placeholder="Y"
           className="input input-bordered w-32 h-6"
           onInput={(e) => {
-            const y = parseInt(e.currentTarget.value);
+            const y = Number(e.currentTarget.value);
             setVector(
               new Vector([
                 {obj: vector.x},
@@ -58,7 +58,7 @@ function VectorNode(props: NodeProps<DataType>) {
           placeholder="Z"
           className="input input-bordered w-32 h-6"
           onInput={(e) => {
-            const z = parseInt(e.currentTarget.value);
+            const z = Number(e.currentTarget.value);
             setVector(
               new Vector([
                 {obj: vector.x},

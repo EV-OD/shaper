@@ -11,7 +11,7 @@ function RandomNode(props: NodeProps<DataType>) {
         updateNodeData(props.id, {
             obj: {
                 type: 'instance',
-                f: () => Math.floor(Math.random() * 100)
+                f: () => Math.floor(Math.random() * 4)
             }
         });
         console.log(props);

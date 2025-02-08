@@ -9,6 +9,9 @@ import PlaneGeoNode from "../component/widgets/nodes/PlaneGeoNode";
 import GeoViewNode from "../component/widgets/nodes/GeoViewNode";
 import CubeGeoNode from "../component/widgets/nodes/CubeGeoNode";
 import ScaleGeoNode from "../component/widgets/nodes/ScaleGeoNode";
+import InstancePositionNode from "../component/widgets/nodes/InstancePositionNode";
+import RotateGeoNode from "../component/widgets/nodes/RotateGeoNode";
+import TranslateGeoNode from "../component/widgets/nodes/TranslateGeoNode";
 
 export const CustomNodeType = { 
   randomNode: RandomNode, 
@@ -22,5 +25,8 @@ export const CustomNodeType = {
   cubeGeoNode: CubeGeoNode,
   geoViewNode: GeoViewNode,
   scaleGeoNode: ScaleGeoNode,
+  instancePositionNode: InstancePositionNode,
+  rotateGeoNode: RotateGeoNode,
+  translateGeoNode: TranslateGeoNode
 
 };
