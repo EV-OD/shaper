@@ -1,4 +1,4 @@
-import { GizmoHelper, Grid, PerspectiveCamera } from "@react-three/drei";
+import { GizmoHelper, GizmoViewport, Grid, PerspectiveCamera } from "@react-three/drei";
 import * as THREE from "three";
 
 import { OrbitControls } from "@react-three/drei";
@@ -23,7 +23,7 @@ function ViewPort() {
         <meshStandardMaterial />
       </mesh> */}
         {geometry && 
-        <mesh geometry={geometry} position={[0,1,0]} receiveShadow castShadow>
+        <mesh geometry={geometry} position={[0,0.5,0]} receiveShadow castShadow>
             <meshStandardMaterial />
         </mesh>
 }
@@ -40,13 +40,20 @@ function ViewPort() {
         fadeStrength={5.9} 
         /> 
       <directionalLight  position={[0, 0, 5]} />
+
       {/* <ambientLight intensity={0.5} /> */}
       <PerspectiveCamera makeDefault  position={[4,4,4]}>
-      <spotLight position={[0, 5, 0]} angle={0.6} penumbra={1} decay={0.9} intensity={Math.PI} receiveShadow castShadow />
-      <pointLight position={[4, 4, 4]} intensity={70} />
+      <spotLight position={[0, 5, 0]} angle={0.6} penumbra={1} decay={0.9} intensity={20} receiveShadow castShadow />
+      <pointLight position={[10,10,10]} intensity={70} />
 
       <OrbitControls>
-        <GizmoHelper/>
+      <GizmoHelper
+  alignment="bottom-right" 
+  margin={[80, 80]} 
+>
+  <GizmoViewport axisColors={['red', 'green', 'blue']} labelColor="black" />
+  {/* alternative: <GizmoViewcube /> */}
+</GizmoHelper>
       </OrbitControls>
       </PerspectiveCamera>
       <mesh rotation={[Math.PI / -2 , 0,0]} position={[0,-0.01,0]} receiveShadow castShadow>

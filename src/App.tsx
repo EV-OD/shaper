@@ -34,7 +34,7 @@ function App ()  {
             <Pane minSize={"50%"} >
               <div style={{ ...layoutCSS, background: '#d5d7d9' }}>
                 <div className='absolute inset-0 h-screen'>
-                <Canvas>
+                <Canvas shadows >
                   <ViewPort/>
                 </Canvas>
                 </div>
