@@ -3,6 +3,8 @@ import { Handle, Position, useReactFlow } from "@xyflow/react";
 import type { NodeProps } from "@xyflow/react";
 import { DataType } from "../../../types/dataType";
 import Vector, { vectorItem } from "../../../utils/vector";
+import CustomInput from "../../ui/CInput";
+import { evn } from "../../../utils/evaluator";
 
 function VectorNode(props: NodeProps<DataType>) {
   const { updateNodeData } = useReactFlow();
@@ -19,12 +21,12 @@ function VectorNode(props: NodeProps<DataType>) {
   }, [vector]);
 
   return (
-    <div className="border border-gray-300 rounded-lg overflow-hidden bg-white">
-      <div className="bg-slate-700 p-2 px-4">
-        <h3 className="text-sm font-semibold text-white">Vector Node</h3>
+    <div className="border border-none rounded-lg cnode rounded-t-lg vector">
+      <div className="header p-2 px-4">
+        <h3 className="text-sm font-semibold text">Vector Node</h3>
       </div>
       <div className="p-4 flex flex-col items-center">
-        <input
+        {/* <input
           type="number"
           placeholder="X"
           className="input input-bordered w-32 h-6"
@@ -38,36 +40,49 @@ function VectorNode(props: NodeProps<DataType>) {
               ])
             );
           }}
-        />
-        <input
-          type="number"
-          placeholder="Y"
-          className="input input-bordered w-32 h-6"
+        /> */}
+        <div className="flex flex-col items-center gap-1">
+          
+        <CustomInput
+          label="X"
+          className="w-32"
           onInput={(e) => {
-            const y = Number(e.currentTarget.value);
+            const y = e.currentTarget.value;
             setVector(
               new Vector([
                 {obj: vector.x},
-                { obj: { type: "instance", f: () => y } },
+                { obj: { type: "instance", f: () => evn(y) } },
                 {obj: vector.z}])
             );
           }}
         />
-        <input
-          type="number"
-          placeholder="Z"
-          className="input input-bordered w-32 h-6"
+        <CustomInput
+          label="Y"
+          className="w-32"
           onInput={(e) => {
-            const z = Number(e.currentTarget.value);
+            const y = e.currentTarget.value;
+            setVector(
+              new Vector([
+                {obj: vector.x},
+                { obj: { type: "instance", f: () => evn(y) } },
+                {obj: vector.z}])
+            );
+          }}
+        />
+        <CustomInput
+          label="Z"
+          className="w-32"
+          onInput={(e) => {
+            const z = e.currentTarget.value;
             setVector(
               new Vector([
                 {obj: vector.x},
                 {obj: vector.y},
-                { obj: { type: "instance", f: () => z } }
-              ])
+                { obj: { type: "instance", f: () => evn(z) } }])
             );
           }}
-        />
+        />  
+        </div>
         <Handle
           type="source"
           position={Position.Right}

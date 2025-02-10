@@ -40,15 +40,15 @@ function VectorAdd(props: NodeProps<DataType>) {
 
 
   return (
-    <div className="border border-gray-300 rounded-lg bg-white">
-      <div className="bg-slate-700 p-2 px-4 rounded-t-lg">
-        <h3 className="text-sm font-semibold text-white">Vector Addition</h3>
+    <div className="border border-none rounded-lg cnode rounded-t-lg vector ">
+      <div className="header p-2 px-4 rounded-t-lg">
+        <h3 className="text-sm font-semibold text">Vector Addition</h3>
       </div>
       <div className="">
-        <CustomHandle id="a" label="Vector A" onChange={(v) => {
+        <CustomHandle connectionCount={1} id="a" label="A" className="vectorEdge" onChange={(v) => {
             setA(v)
         }} />
-        <CustomHandle id="b" label="Vector B" onChange={(v) => {
+        <CustomHandle connectionCount={1} id="b" label="B" className="vectorEdge" onChange={(v) => {
             setB(v)
         }} />
         <div>
@@ -63,6 +63,8 @@ function VectorAdd(props: NodeProps<DataType>) {
               right: 0,
               top: "70%",
             }}
+            
+            className="vectorEdge"
           />
         </div>
       </div>

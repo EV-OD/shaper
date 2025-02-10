@@ -3,15 +3,18 @@ import { Handle, Position, useNodeConnections, useNodesData, useReactFlow } from
 import type { NodeProps } from '@xyflow/react';
 import { Vector, vectorItem } from '../../../utils/vector';
 import { DataType } from '../../../types/dataType';
+import LimitHandle from '../handle/LimitHandle';
 
 function CustomHandle({
     id,
     label,
-    onChange
+    onChange,
+    connectionCount
 }: {
     id: string;
     label: string;
     onChange: (value: any) => void;
+    connectionCount?: number;
 }) {
     const connections = useNodeConnections({ handleType: 'target', handleId: id });
     const nodesData = useNodesData(connections?.[0]?.source);
@@ -27,8 +30,9 @@ function CustomHandle({
 
     return (
         <div className='relative py-1'>
-            <Handle
+            <LimitHandle
                 type="target"
+                connectionCount={connectionCount}
                 position={Position.Left}
                 id={id}
                 style={{
@@ -86,15 +90,15 @@ function CombineVectorNode(props: NodeProps<DataType>) {
     }, [x, y, z]);  // Only trigger combineAndUpdate when x, y, or z change
 
     return (
-        <div className="bg-white shadow rounded-lg">
-            <div className="bg-slate-700 p-2 px-4 rounded-t-lg">
-                <h3 className="text-sm font-semibold text-white">Combine Vector Node</h3>
+        <div className="border border-none rounded-lg cnode rounded-t-lg vector ">
+            <div className="header p-2 px-4 rounded-t-lg">
+                <h3 className="text-sm font-semibold text">Combine Vector Node</h3>
             </div>
             <div className='py-3'>
                 {/* Input Handles */}
-                <CustomHandle id="input1" label="X" onChange={(v) => setX(v)} />
-                <CustomHandle id="input2" label="Y" onChange={(v) => setY(v)} />
-                <CustomHandle id="input3" label="Z" onChange={(v) => setZ(v)} />
+                <CustomHandle id="input1" connectionCount={1} label="X" onChange={(v) => setX(v)} />
+                <CustomHandle id="input2" connectionCount={1} label="Y" onChange={(v) => setY(v)} />
+                <CustomHandle id="input3" connectionCount={1} label="Z" onChange={(v) => setZ(v)} />
             </div>
             {/* Output Handle */}
             <Handle

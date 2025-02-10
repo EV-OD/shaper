@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Handle, Node, Position, useNodeConnections, useNodesData } from '@xyflow/react';
 import Vector from '../../../utils/vector';
 import { useStore } from '../../../globalStores/viewer';
+import LimitHandle from '../handle/LimitHandle';
 
 const render3DVector = (x: number, y: number, z: number) => {
     return (
@@ -70,19 +71,20 @@ function VectorViewNode() {
 
 
     return (
-        <div className="border border-gray-300 rounded-lg overflow-hidden bg-white">
-            <div className="bg-slate-700 p-2 px-4">
-                <h3 className="text-sm font-semibold text-white">Vector View</h3>
+        <div className="border border-none rounded-lg cnode vector">
+            <div className="header p-2 px-4">
+                <h3 className="text-sm font-semibold text">Vector View</h3>
             </div>
             <div className="p-4">
                 {/* Vector display */}
                 <div className="flex justify-center items-center">
                     {render3DVector(vector.x, vector.y, vector.z)}
                 </div>
-                <Handle
+                <LimitHandle
                     type="target"
                     position={Position.Left}
                     id="b"
+                    connectionCount={1}
                     style={{
                         top: '70%',
                         border: 'none',

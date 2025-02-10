@@ -1,14 +1,19 @@
 import { Handle, Position, useNodeConnections, useNodesData } from "@xyflow/react";
 import { useEffect } from "react";
+import LimitHandle from "./LimitHandle";
 
 function CustomHandle({
     id,
     label,
-    onChange
+    onChange,
+    className,
+    connectionCount
 }: {
     id: string;
     label: string;
     onChange: (value: any) => void;
+    className?: string;
+    connectionCount?: number;
 }) {
     const connections = useNodeConnections({ handleType: 'target', handleId: id });
     const nodesData = useNodesData(connections?.[0]?.source);
@@ -24,7 +29,8 @@ function CustomHandle({
 
     return (
         <div className='relative py-1'>
-            <Handle
+            <LimitHandle
+               connectionCount={connectionCount}
                 type="target"
                 position={Position.Left}
                 id={id}
@@ -34,6 +40,7 @@ function CustomHandle({
                     height: 10,
                     left: 0
                 }}
+                className={className}
             />
             <label htmlFor={label} className="label px-5">
                 {label}
@@ -77,7 +84,7 @@ function CustomHandleSource({
                     left: 0
                 }}
             />
-            <label htmlFor={label} className="label px-5">
+            <label htmlFor={label} className="text-white px-5">
                 {label}
             </label>
         </div>

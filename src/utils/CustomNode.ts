@@ -45,7 +45,7 @@ export const GeoNodeTypes = {
     translateGeoNode: TranslateGeoNode,
   },
   instance: {
-    instancePositionNode: InstancePositionNode,
+    vetrexInsNode: InstancePositionNode,
   }
 }
 

@@ -91,6 +91,7 @@ const NodeEditor = () =>{
           onDragOver={onDragOver}
           fitView
           style={{ backgroundColor: "#F7F9FB" }}
+          colorMode='dark'
         >
           <Controls />
           <MiniMap />

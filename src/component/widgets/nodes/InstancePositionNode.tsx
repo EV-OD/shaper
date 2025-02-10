@@ -68,9 +68,9 @@ function InstancePositionNode(props: NodeProps<DataType>) {
   }, [geoData, vectorData]);
 
   return (
-    <div className="border border-gray-300 rounded-lg bg-white">
-      <div className="bg-slate-700 p-2 px-4 rounded-t-lg">
-        <h3 className="text-sm font-semibold text-white">InstancePositionNode</h3>
+    <div className="border border-none rounded-lg cnode rounded-t-lg geo">
+      <div className="header p-2 px-4 rounded-t-lg">
+        <h3 className="text-sm font-semibold text">InstancePositionNode</h3>
       </div>
       <div className="">
         <div className="relative py-1">

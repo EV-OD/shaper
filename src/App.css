@@ -1,3 +1,14 @@
+@import url('./xy-theme.css');
+
+:root{
+  --xy-background-color-default: #1D1D1D!important;
+  --xy-handle-background-color-default: #08D29C;
+  --vectoEdgeColor: #215ba5;
+  --valueEdgeColor: #08D29C;
+
+  --edgeColor :var(--xy-handle-background-color-default);
+}
+
 body{
   overflow: hidden;
 }
@@ -5,12 +16,86 @@ body{
 
 .react-flow__node {
     box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.12);
-    border-radius: 10px;
+    border-radius: 8px;
     font-size: 12px;
+}
+.react-flow__handle{
+    background-color: var(--edgeColor);
+    border:none;
+    border-radius: 50%;
+    cursor: pointer;
 }
 
 canvas{
   background-color: #000000;
+}
+
+input:where(:not([type="button"], [type="reset"], [type="submit"])){
+  border:none;
+  outline: none;
+}
+
+.header{
+  background-color: #5b6919;
+  color: white;
+  /* lg border-top radius */
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.header ~ *{
+  color:rgb(205, 205, 205);
+}
+
+.cnode{
+  background-color: #303030;
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.12);
+}
+
+.cnode label{
+  color: rgb(210, 210, 210);
+}
+
+.vectorEdge{
+  background-color: #215ba5;
+}
+
+.geo .react-flow__handle{
+  --xy-handle-background-color-default: #0ba97e;
+}
+.geo .header{
+  background-color: #017a5a;
+}
+
+.react-flow__edges path{
+  stroke: #b4b4b486!important;
+  stroke-width: 2;
+}
+.react-flow__edge	path{
+  stroke: #b4b4b4!important;
+  stroke-width: 3;
+}
+
+.react-flow__edge.selected	path{
+  stroke: #08D29C!important;
+  stroke-width: 3;
+}
+
+.react-flow__edge	{
+  
+}
+
+.vector .react-flow__handle{
+  border-radius: 0!important;
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%) !important;
+}
+
+
+.vector .react-flow__handle{
+  --xy-handle-background-color-default: #3091be;
+}
+.vector .header{
+  background-color: #216382;
 }
 
 .dndflow {
@@ -24,7 +109,8 @@ canvas{
     border-right: 1px solid #eee;
     padding: 15px 10px;
     font-size: 12px;
-    background: #fcfcfc;
+    color: rgb(230, 230, 230);
+    background-color: #1D1D1D;
   }
    
   .dndflow aside .description {
@@ -33,13 +119,15 @@ canvas{
    
   .dndflow .dndnode {
     height: 30px;
-    padding: 4px;
-    border: 1px solid #1a192b;
-    border-radius: 2px;
+    padding: 10px;
+    padding-block: 24px;
+    border: none;
+    border-radius: 5px;
+    background-color: #333333;
     margin-bottom: 10px;
     display: flex;
-    justify-content: center;
     align-items: center;
+    gap: 10px;
     cursor: grab;
   }
    

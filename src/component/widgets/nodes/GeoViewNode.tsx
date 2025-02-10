@@ -34,9 +34,9 @@ function GeoViewNode() {
 
 
     return (
-        <div className="border border-gray-300 rounded-lg overflow-hidden bg-white">
-            <div className="bg-slate-700 p-2 px-4">
-                <h3 className="text-sm font-semibold text-white">GeoViewNode</h3>
+        <div className="border border-none rounded-lg cnode rounded-t-lg geo">
+            <div className="header p-2 px-4">
+                <h3 className="text-sm font-semibold text">GeoViewNode</h3>
             </div>
             <div className="p-4">
                 <Handle
