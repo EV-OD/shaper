@@ -1,19 +1,24 @@
 import { GizmoHelper, GizmoViewport, Grid, PerspectiveCamera } from "@react-three/drei";
+import * as BufferGeometryUtils from "three/examples/jsm/utils/BufferGeometryUtils.js";
 import * as THREE from "three";
 
 import { OrbitControls } from "@react-three/drei";
 import useGeo from "../../globalStores/geoViewer";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 
 function ViewPort() {
     const geo = useGeo(state=> state.geometry)
 
+
     const geometry = useMemo(() => {
+      let geo1
         if(geo){
             geo.attributes.position.needsUpdate = true;
-            geo.computeVertexNormals(); 
+            geo.computeBoundingSphere();
+            geo1 = BufferGeometryUtils.mergeVertices(geo);
+            geo1.computeVertexNormals(); 
         }
-        return geo;
+        return geo1;
       }, [geo]);
 
   return (
@@ -24,7 +29,7 @@ function ViewPort() {
       </mesh> */}
         {geometry && 
         <mesh geometry={geometry} position={[0,0.5,0]} receiveShadow castShadow>
-            <meshStandardMaterial />
+            <meshStandardMaterial color={"#FAD5A5"} />
         </mesh>
 }
 

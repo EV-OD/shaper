@@ -64,17 +64,9 @@ export class Vector {
 
     public add(other: Vector): Vector {
         this._ensureSameDimension(other);
-        // const result = this.data.map((obj, idx) => ({
-        //     type: "instance",
-        //     f: () => obj.f() + other.data[idx].f(),
-        //     x: obj,
-        //     y: other.data[idx],
-        //     z: idx === 2 ? { type: "instance", f: () => obj.f() + other.data[idx].f() } : undefined
-        // }));
-        // return new Vector(result.map(r => r.f()));
+
 
         const selfItem = this
-        console.log(selfItem.x.f() + other.x.f())
         const x:vectorItem = {
             obj:{
                 type: "instance",
@@ -108,24 +100,66 @@ export class Vector {
 
     public subtract(other: Vector): Vector {
         this._ensureSameDimension(other);
-        const result = this.data.map((obj, idx) => ({
-            type: "instance",
-            f: () => obj.f() - other.data[idx].f(),
-            x: obj,
-            y: other.data[idx],
-            z: idx === 2 ? { type: "instance", f: () => obj.f() - other.data[idx].f() } : undefined
-        }));
-        return new Vector(result.map(r => r.f()));
+        const selfItem = this
+        const x:vectorItem = {
+            obj:{
+                type: "instance",
+                f(){
+                    return selfItem.x.f() - other.x.f()
+                }
+            }
+        }
+        const y:vectorItem = {
+            obj:{
+                type: "instance",
+                f(){
+                    return selfItem.y.f() - other.y.f()
+                }
+            }
+        }
+
+        const z:vectorItem = {
+            obj:{
+                type: "instance",
+                f(){
+                    return selfItem.z.f() - other.z.f()
+                }
+            }
+        }
+
+        return new Vector([x,y,z])
     }
 
     public scalarMultiply(scalar: number): Vector {
-        const result = this.data.map((obj, idx) => ({
-            type: "instance",
-            f: () => obj.f() * scalar,
-            x: obj,
-            z: idx === 2 ? { type: "instance", f: () => obj.f() * scalar } : undefined
-        }));
-        return new Vector(result.map(r => r.f()));
+
+        const selfItem = this
+        const x:vectorItem = {
+            obj:{
+                type: "instance",
+                f(){
+                    return selfItem.x.f() * scalar
+                }
+            }
+        }
+        const y:vectorItem = {
+            obj:{
+                type: "instance",
+                f(){
+                    return selfItem.y.f() * scalar
+                }
+            }
+        }
+
+        const z:vectorItem = {
+            obj:{
+                type: "instance",
+                f(){
+                    return selfItem.z.f() * scalar
+                }
+            }
+        }
+
+        return new Vector([x,y,z])
     }
 
     public dot(other: Vector): { type: "instance"; f: () => number; x: any; y: any; z?: any } {

@@ -50,8 +50,8 @@ function VectorNode(props: NodeProps<DataType>) {
             const y = e.currentTarget.value;
             setVector(
               new Vector([
-                {obj: vector.x},
-                { obj: { type: "instance", f: () => evn(y) } },
+                {obj: { type: "instance", f: () => evn(y) }},
+                { obj:  vector.y},
                 {obj: vector.z}])
             );
           }}

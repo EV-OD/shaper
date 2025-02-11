@@ -12,18 +12,19 @@ import { BufferGeometry } from "three";
 import useGeo from "../../../globalStores/geoViewer";
 import Vector from "../../../utils/vector";
 import { DataType } from "../../../types/dataType";
+import { ArgsVectorType } from "../../../types/ArgsObjTYpe";
 
 type GeoCustomType = Node<{
   obj: {
     type: string;
-    f: () => BufferGeometry;
+    f: (any) => BufferGeometry;
   };
 }>;
 
 type CustomVectorType = Node<{
     obj: {
       type: string;
-      f: () => Vector;
+      f: (any) => Vector;
     };
   }>;
 
@@ -50,9 +51,23 @@ function InstancePositionNode(props: NodeProps<DataType>) {
           if(cloned && vec){
             const vertices = cloned.attributes.position.array;
             for (let i = 0; i < vertices.length; i += 3) {
-                vertices[i] += vec.x.f();
-                vertices[i + 1] += vec.y.f();
-                vertices[i + 2] += vec.z.f();
+              const vectorArgument:ArgsVectorType = {
+                x: {
+                  f: ()=>vertices[i]
+                },
+                y: {
+                  f: ()=>vertices[i+1]
+                },
+                z: {
+                  f: ()=>vertices[i+2]
+                }
+              }
+                const argObj = {
+                  vector: vectorArgument
+                }
+                vertices[i] += vec.x.f(argObj);
+                vertices[i + 1] += vec.y.f(argObj);
+                vertices[i + 2] += vec.z.f(argObj);
             }
             cloned.attributes.position.needsUpdate = true;
             cloned.computeVertexNormals();

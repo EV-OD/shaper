@@ -23,7 +23,7 @@ function CustomHandle({
         onChange(nodesData?.data ? nodesData.data : {
             obj: {
                 type: "instance",
-                f: () => 0
+                f: (any) => 0
             }
         });
     }, [nodesData]);
@@ -56,19 +56,19 @@ function CombineVectorNode(props: NodeProps<DataType>) {
     const [x, setX] = useState<vectorItem>({
         obj: {
             type: "instance",
-            f: () => 0
+            f: (any) => 0
         }
     });
     const [y, setY] = useState<vectorItem>({
         obj: {
             type: "instance",
-            f: () => 0
+            f: (any) => 0
         }
     });
     const [z, setZ] = useState<vectorItem>({
         obj: {
             type: "instance",
-            f: () => 0
+            f: (any) => 0
         }
     });
 
@@ -78,7 +78,7 @@ function CombineVectorNode(props: NodeProps<DataType>) {
         updateNodeData(props.id, {
             obj: {
                 type: "instance",
-                f: () => combinedVector,
+                f: (any) => combinedVector,
                 vector: [x,y,z]
             }
         });

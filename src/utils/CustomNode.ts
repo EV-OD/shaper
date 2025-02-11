@@ -12,12 +12,15 @@ import ScaleGeoNode from "../component/widgets/nodes/ScaleGeoNode";
 import InstancePositionNode from "../component/widgets/nodes/InstancePositionNode";
 import RotateGeoNode from "../component/widgets/nodes/RotateGeoNode";
 import TranslateGeoNode from "../component/widgets/nodes/TranslateGeoNode";
+import VectorSub from "../component/widgets/nodes/vectorSub";
+import NoiseNode from "../component/widgets/nodes/noiseNode";
 
 
 
 export const VectorNodeTypes = {
   arithemetic: {
     vectorAdd: VectorAdd,
+    vectorSub: VectorSub,
   },
   output: {
     vectorView: VectorViewNode,
@@ -52,6 +55,7 @@ export const GeoNodeTypes = {
 export const valueNodeTypes = {
   randomNode: RandomNode,
   valueNode: ValueNode,
+  noiseTexture: NoiseNode
 }
 
 
