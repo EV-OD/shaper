@@ -14,8 +14,15 @@ import RotateGeoNode from "../component/widgets/nodes/RotateGeoNode";
 import TranslateGeoNode from "../component/widgets/nodes/TranslateGeoNode";
 import VectorSub from "../component/widgets/nodes/vectorSub";
 import NoiseNode from "../component/widgets/nodes/noiseNode";
-
-
+import ShadeSmoothNode from "../component/widgets/nodes/shadeSmooth";
+import JoinGeoNode from "../component/widgets/nodes/JoinGeoNode";
+import ClampNode from "../component/widgets/nodes/ClampNode";
+import ModelNode from "../component/widgets/nodes/ImportModel";
+import ToMeshNode from "../component/widgets/nodes/ToMeshNode";
+import GroupMeshNode from "../component/widgets/nodes/GroupNode";
+import MeshViewNode from "../component/widgets/nodes/MeshViewNode";
+import TranslateMeshNode from "../component/widgets/nodes/TranslateMeshNode";
+import NoGeoInstancePositionNode from "../component/widgets/nodes/NoGeoInstanceNode";
 
 export const VectorNodeTypes = {
   arithemetic: {
@@ -28,16 +35,17 @@ export const VectorNodeTypes = {
   input: {
     randomVector: RandomVector,
     vectorNode: VectorNode,
-  }, 
+  },
   misc: {
     combineVector: CombineVectorNode,
-  }
-}
+  },
+};
 
 export const GeoNodeTypes = {
-  mesh:{
+  mesh: {
     planeGeometry: PlaneGeoNode,
     cubeGeoNode: CubeGeoNode,
+    importNode: ModelNode,
   },
   output: {
     geoViewNode: GeoViewNode,
@@ -46,28 +54,40 @@ export const GeoNodeTypes = {
     scaleGeoNode: ScaleGeoNode,
     rotateGeoNode: RotateGeoNode,
     translateGeoNode: TranslateGeoNode,
+    translateMesh: TranslateMeshNode,
   },
   instance: {
     vetrexInsNode: InstancePositionNode,
-  }
-}
+    noGeoInstanceNode: NoGeoInstancePositionNode,
+  },
+  misc: {
+    shadeSmoothNode: ShadeSmoothNode,
+    joinGeoNode: JoinGeoNode,
+    toMeshNode: ToMeshNode,
+    groupMesh: GroupMeshNode,
+    meshViewNode: MeshViewNode,
+  },
+};
 
 export const valueNodeTypes = {
   randomNode: RandomNode,
   valueNode: ValueNode,
-  noiseTexture: NoiseNode
-}
-
-
+  noiseTexture: NoiseNode,
+  clampNode: ClampNode,
+};
 
 // function to deep flaten an object
-function flattenObject(obj: Record<string, any>, parentKey: string = '', result: Record<string, any> = {}): Record<string, any> {
+function flattenObject(
+  obj: Record<string, any>,
+  parentKey: string = "",
+  result: Record<string, any> = {},
+): Record<string, any> {
   for (let key in obj) {
-      if (typeof obj[key] === 'object' && obj[key] !== null) {
-          flattenObject(obj[key], parentKey, result);
-      } else {
-          result[key] = obj[key];
-      }
+    if (typeof obj[key] === "object" && obj[key] !== null) {
+      flattenObject(obj[key], parentKey, result);
+    } else {
+      result[key] = obj[key];
+    }
   }
   return result;
 }
@@ -76,8 +96,6 @@ const CustomNodeType = {
   ...valueNodeTypes,
   ...flattenObject(VectorNodeTypes),
   ...flattenObject(GeoNodeTypes),
-}
+};
 
-export {CustomNodeType}
-
-
+export { CustomNodeType };
