@@ -1,50 +1,82 @@
-# React + TypeScript + Vite
+# Shaper
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Shaper is a **web-based application** designed for creating and manipulating geometry nodes. It provides an **intuitive** and **interactive interface** for users to design complex geometric shapes and structures directly in their web browser.
 
-Currently, two official plugins are available:
+## Table of Contents
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [Introduction](#introduction)
+- [Features](#features)
+- [Requirements](#requirements)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Screenshots](#screenshots)
+- [Contributing](#contributing)
+- [License](#license)
 
-## Expanding the ESLint configuration
+## Introduction
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Shaper is a **powerful tool** for anyone interested in geometry and design. Whether you are a **student**, **educator**, or **professional**, Shaper offers a range of features to help you create and explore geometric nodes with ease.
 
-- Configure the top-level `parserOptions` property like this:
+## Features
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+- **Interactive geometry node editor**
+- **Real-time preview** of geometric shapes
+- **Export designs** to various formats
+- **User-friendly interface**
+- Support for **complex geometric operations**
+
+## Requirements
+
+- **Node.js** (v14 or higher)
+- **pnpm** (v6 or higher)
+
+## Installation
+
+To install the dependencies, run:
+
+```sh
+pnpm install
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## Usage
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+To start the development server, run:
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+```sh
+pnpm start
 ```
+
+To build the project, run:
+
+```sh
+pnpm build
+```
+
+## Screenshots
+
+### Main Interface
+
+An overview of the main workspace where you can interact with geometry nodes.
+
+![Main Interface](/public/whole.png)
+
+### Viewport Preview
+
+A focused view of the design area displaying real-time updates as you edit your geometry.
+
+![Viewport Preview](/public/viewport.png)
+
+## Contributing
+
+We welcome contributions from the community. To contribute, please follow these steps:
+
+1. **Fork the repository**
+2. **Create a new branch** (`git checkout -b feature-branch`)
+3. **Make your changes**
+4. **Commit your changes** (`git commit -m 'Add new feature'`)
+5. **Push to the branch** (`git push origin feature-branch`)
+6. **Open a pull request**
+
+## License
+
+This project is licensed under the **MIT License**.
