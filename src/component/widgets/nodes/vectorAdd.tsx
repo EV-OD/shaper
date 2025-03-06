@@ -22,17 +22,20 @@ function VectorAdd(props: NodeProps<DataType>) {
   useEffect(()=>{
     console.log(a,b)
     if(a.obj.vector && b.obj.vector && a.obj.vector.length != 0 && b.obj.vector.length != 0){
-        const aV = new Vector(a.obj.vector)
-        // console.log(aV)
-        const bV = new Vector(b.obj.vector)
-    
-        const v = aV.add(bV)
+
         // console.log(v)
         updateNodeData(props.id, {
             obj:{
                 type: "instance",
-                f:()=> v,
-                vector: [{obj:v.x}, {obj:v.y}, {obj:v.z}]
+                f:()=> {
+                  const aV = new Vector(a.obj.vector)
+                  // console.log(aV)
+                  const bV = new Vector(b.obj.vector)
+              
+                  const v = aV.add(bV)
+                  return v
+                }
+                // vector: [{obj:v.x}, {obj:v.y}, {obj:v.z}]
             }
         })
     }

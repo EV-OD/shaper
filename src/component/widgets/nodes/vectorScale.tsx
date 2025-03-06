@@ -26,17 +26,17 @@ function VectorScale(props: NodeProps<DataType>) {
   useEffect(()=>{
     console.log(a,b)
     if(a.obj.vector && b.obj.vector && a.obj.vector.length != 0 && b.obj.vector.length != 0){
-        const aV = new Vector(a.obj.vector)
-        // console.log(aV)
-        const bV = new Vector(b.obj.vector)
-    
-        const v = aV.add(bV)
+
         // console.log(v)
         updateNodeData(props.id, {
             obj:{
                 type: "instance",
-                f:()=> v,
-                vector: [{obj:v.x}, {obj:v.y}, {obj:v.z}]
+                f:(argObj)=> {
+                  const aV = new Vector(a.obj.vector)
+    
+                  const v = aV.scalarMultiply(k.obj.f(argObj), argObj)
+                  return v
+                },
             }
         })
     }
@@ -53,7 +53,12 @@ function VectorScale(props: NodeProps<DataType>) {
             setA(v)
         }} />
         <CustomHandle connectionCount={1} id="k" label="B" className="vectorEdge" onChange={(v) => {
-            setB(v)
+            setK({
+              obj: {
+                type: "instance",
+                f: () => v
+              }
+            })
         }} />
         <div>
           <Handle

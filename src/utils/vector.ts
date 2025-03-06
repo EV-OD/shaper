@@ -70,16 +70,16 @@ export class Vector {
         const x:vectorItem = {
             obj:{
                 type: "instance",
-                f(){
-                    return selfItem.x.f() + other.x.f()
+                f(argObj:any){
+                    return selfItem.x.f(argObj) + other.x.f(argObj)
                 }
             }
         }
         const y:vectorItem = {
             obj:{
                 type: "instance",
-                f(){
-                    return selfItem.y.f() + other.y.f()
+                f(argObj:any){
+                    return selfItem.y.f(argObj) + other.y.f(argObj)
                 }
             }
         }
@@ -87,8 +87,8 @@ export class Vector {
         const z:vectorItem = {
             obj:{
                 type: "instance",
-                f(){
-                    return selfItem.z.f() + other.z.f()
+                f(argObj:any){
+                    return selfItem.z.f(argObj) + other.z.f(argObj)
                 }
             }
         }
@@ -104,16 +104,16 @@ export class Vector {
         const x:vectorItem = {
             obj:{
                 type: "instance",
-                f(){
-                    return selfItem.x.f() - other.x.f()
+                f(argObj:any){
+                    return selfItem.x.f(argObj) - other.x.f(argObj)
                 }
             }
         }
         const y:vectorItem = {
             obj:{
                 type: "instance",
-                f(){
-                    return selfItem.y.f() - other.y.f()
+                f(argObj:any){
+                    return selfItem.y.f(argObj) - other.y.f(argObj)
                 }
             }
         }
@@ -121,8 +121,8 @@ export class Vector {
         const z:vectorItem = {
             obj:{
                 type: "instance",
-                f(){
-                    return selfItem.z.f() - other.z.f()
+                f(argObj:any){
+                    return selfItem.z.f(argObj) - other.z.f(argObj)
                 }
             }
         }
@@ -136,16 +136,16 @@ export class Vector {
         const x:vectorItem = {
             obj:{
                 type: "instance",
-                f(){
-                    return selfItem.x.f() * scalar
+                f(argObj:any){
+                    return selfItem.x.f(argObj) * scalar
                 }
             }
         }
         const y:vectorItem = {
             obj:{
                 type: "instance",
-                f(){
-                    return selfItem.y.f() * scalar
+                f(argObj:any){
+                    return selfItem.y.f(argObj) * scalar
                 }
             }
         }
@@ -153,8 +153,8 @@ export class Vector {
         const z:vectorItem = {
             obj:{
                 type: "instance",
-                f(){
-                    return selfItem.z.f() * scalar
+                f(argObj:any){
+                    return selfItem.z.f(argObj) * scalar
                 }
             }
         }

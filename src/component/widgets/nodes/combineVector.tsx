@@ -78,7 +78,10 @@ function CombineVectorNode(props: NodeProps<DataType>) {
         updateNodeData(props.id, {
             obj: {
                 type: "instance",
-                f: (any) => combinedVector,
+                f: (args) => {
+                    console.log(args)
+                    return combinedVector
+                },
                 vector: [x,y,z]
             }
         });
