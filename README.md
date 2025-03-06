@@ -21,7 +21,6 @@ Shaper is a **powerful tool** for anyone interested in geometry and design. Whet
 
 - **Interactive geometry node editor**
 - **Real-time preview** of geometric shapes
-- **Export designs** to various formats
 - **User-friendly interface**
 - Support for **complex geometric operations**
 

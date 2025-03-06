@@ -15,7 +15,6 @@ function fastBlenderNoise(
     let frequency: number = scale;
     let maxValue: number = 0;
 
-    // Assume noise2D is defined elsewhere, e.g., imported from a noise library.
     const dx: number = distortion * noise2D(x, y);
     const dy: number = distortion * noise2D(y, x);
 
@@ -27,10 +26,10 @@ function fastBlenderNoise(
         maxValue += amplitude;
 
         amplitude *= roughness;
-        frequency *= 2; // Lacunarity = 2 (Blender default)
+        frequency *= 2; 
     }
 
-    return total / maxValue; // Normalize
+    return total / maxValue;
 }
 
 export { fastBlenderNoise };
