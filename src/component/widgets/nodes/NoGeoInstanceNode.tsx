@@ -53,7 +53,7 @@ function NoGeoInstancePositionNode(props: NodeProps<DataType>) {
           for (
             let i = 0;
             i < vertices.length;
-            i += (Math.floor(Math.random() * (10 - 0 + 1)) + 0) * 3
+            i += (Math.floor(Math.random() * (3 - 0 + 1)) + 0) * 3
           ) {
             const vectorArgument: ArgsVectorType = {
               x: {
@@ -73,9 +73,9 @@ function NoGeoInstancePositionNode(props: NodeProps<DataType>) {
             const clonedMesh = mesh?.clone();
             if (mesh && clonedMesh) {
               clonedMesh.position.set(
-                vertices[i],
-                vertices[i + 1],
-                vertices[i + 2],
+                vertices[i] + clonedMesh.position.x,
+                vertices[i + 1] + clonedMesh.position.y,
+                vertices[i + 2] + clonedMesh.position.z
               );
               group.add(clonedMesh);
             }

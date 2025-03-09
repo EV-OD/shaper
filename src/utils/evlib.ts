@@ -140,20 +140,3 @@ class TreeNode {
   const all = new SimpleMath();
   
   export { create, all };
-  
-  // export function ev(expression: string | number, invalidReturnValue: any): number | any {
-  //   if (typeof expression === 'number') {
-  //     return expression;
-  //   }
-  //   try {
-  //     const result = all.evaluate(expression);
-  //     return (typeof result === 'number' && !isNaN(result)) ? result : invalidReturnValue;
-  //   } catch (error) {
-  //     return invalidReturnValue;
-  //   }
-  // }
-  
-  // export function evn(expression: string | number): number {
-  //   return ev(expression, 0);
-  // }
-  
